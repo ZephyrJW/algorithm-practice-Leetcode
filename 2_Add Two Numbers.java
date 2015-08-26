@@ -9,36 +9,26 @@
  //1-----pending solution
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null)  return l2;
-        if (l2 == null)  return l1;
+        ListNode add = new ListNode(0);
+        ListNode d = add;
         
-        int carry = 0;
-        
-        while(l1 != null && l2 != null){
-          sum = l1.val + l2.val;
-          num = sum%10+carry;
-          carry = sum/10;
-          ListNode addSum = new ListNode(num);
-          l1 = l1.next;
-          l2 = l2.next;
+        int sum = 0;
+        while(l1!= null || l2!= null){
+            if(l1 != null){
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if(l2 != null){
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            d.next = new ListNode(sum%10);
+            sum = sum/10;
+            d = d.next;
         }
-        
-        if(l1 == null){
-          while(l2!=null){
-            addSum = new ListNode(l2.value);
-            l2 = l2.next;
-          }
-        }
-         if(l2 == null){
-          while(l1!=null){
-            addSum = new ListNode(l1.val);
-            l1 = l1.next;
-          }
-        }
-        return addSum;
-    }
+        if(sum == 1)  d.next = new ListNode(1);
+        return add.next;
 }
-
 
 
 
@@ -71,3 +61,30 @@ public class Solution {
 
     }
 }
+
+
+//3------an accpted solution
+ public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode c1 = l1;
+        ListNode c2 = l2;
+        ListNode pre = new ListNode(0); // set pre head
+        ListNode d = pre;
+        int sum = 0; // the sum of two nodes
+        while (c1 != null || c2 != null) { // traverse longer list
+            if (c1 != null) { // add one list 
+                sum += c1.val;
+                c1 = c1.next; // move on 
+            }
+            if (c2 != null) { // add another list
+                sum += c2.val;
+                c2 = c2.next; // move on 
+            }
+            // build next node
+            d.next = new ListNode(sum % 10); // digit for current node
+            sum /= 10; // carry
+            d = d.next; 
+        }
+        if (sum == 1) d.next = new ListNode(1); // note that can have carry at the last digit
+        return pre.next;
+    }
