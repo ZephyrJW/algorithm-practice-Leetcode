@@ -21,3 +21,7 @@ public class Solution {
         return result;
     }
 }
+
+//one line solution
+
+ return ( num - 1 ) % 9 + 1;
