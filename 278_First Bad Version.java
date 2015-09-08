@@ -25,4 +25,4 @@ public class Solution extends VersionControl {
 
 //note: I used (left+right)/2 to calculate mid in the first place,but it went wrong. @fanshaopu(leetcoder) says this may cause
 //mid to overflow,meaning mid>Integer.MAX_VALUE.   SO REMEMBER THIS EXPRESSION OF SUM;
-
+//EVEN: using left/2+right/2 also works but notice sometimes the outcome is different,like l == 3, r == 5;
