@@ -49,7 +49,7 @@ public class Solution {
             int dupCount = 0, biggerCount = 0;
             int mid = (a + b)/2;
             for(int num : nums) {
-                if(num == mid) dup++;
+                if(num == mid) dupCount++;
                 else if(num > mid && num <= b) biggerCount++; // num <= b very important!
             }
             if(dupCount > 1) return mid;
