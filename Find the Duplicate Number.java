@@ -39,3 +39,23 @@ public class Solution {
         return fast;
     }
 }
+
+//o(nlgn) solution  THINK the biggerCount's job
+public class Solution {
+    public int findDuplicate(int[] nums) {
+        if(nums.length==0) return 0;
+        int a = 1, b = nums.length - 1;
+        while(a <= b) {
+            int dupCount = 0, biggerCount = 0;
+            int mid = (a + b)/2;
+            for(int num : nums) {
+                if(num == mid) dup++;
+                else if(num > mid && num <= b) biggerCount++; // num <= b very important!
+            }
+            if(dupCount > 1) return mid;
+            else if(biggerCount > b - mid) a = mid + 1;
+            else b = mid - 1;
+        }
+        return 0;
+    }
+}
