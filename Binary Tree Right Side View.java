@@ -40,3 +40,25 @@ public class Solution {
         return res;
     }
 }
+
+
+//one brilliant divide and conquer method by @metalx
+
+public class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        if(root == null)
+            return new ArrayList<Integer>();
+            
+        List<Integer> left = rightSideView(root.left);
+        List<Integer> right = rightSideView(root.right);
+        List<Integer> res = new ArrayList<Integer>();
+        res.add(root.val);
+        
+        for(int i=0; i<Math.max(left.size(), right.size()); i++){
+            if(i>=right.size())
+                res.add(left.get(i));
+            else res.add(right.get(i));
+        }
+        return res;
+    }
+}
